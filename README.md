@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浜田高校オープンスクール</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Poppins:wght@400;700&display=swap');
+        body {
+            font-family: 'Kosugi Maru', sans-serif;
+            color: #333;
+            background: linear-gradient(-45deg, #FF6B6B, #FFD166, #06D6A0, #118AB2, #FF8A5B);
+            background-size: 400% 400%;
+            animation: backgroundAnimation 20s ease infinite;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header-title {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #FF6B6B, #FFD166, #06D6A0, #118AB2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: hue-rotate 10s infinite alternate;
+        }
+        @keyframes hue-rotate {
+            from { filter: hue-rotate(0deg); }
+            to { filter: hue-rotate(360deg); }
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding: 0 1rem;
+            color: #333;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .section-title::before,
+        .section-title::after {
+            content: '';
+            position: absolute;
+            height: 5px;
+            background-color: #FFD166;
+            bottom: -5px;
+        }
+        .section-title::before {
+            left: 0;
+            width: 30%;
+            border-radius: 5px;
+        }
+        .section-title::after {
+            right: 0;
+            width: 30%;
+            border-radius: 5px;
+        }
+        .image-slider {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+        .image-slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .image-slider img.active {
+            opacity: 1;
+        }
+        .button-primary {
+            background-color: #06D6A0;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+
+        .chat-container {
+            height: 400px;
+            overflow-y: auto;
+            border: 2px solid #ddd;
+            background-color: #fff;
+        }
+
+        .chat-message.user {
+            background-color: #e2f0ff;
+            text-align: right;
+            border-radius: 1rem 1rem 0.25rem 1rem;
+        }
+
+        .chat-message.assistant {
+            background-color: #f0f0f0;
+            text-align: left;
+            border-radius: 1rem 1rem 1rem 0.25rem;
+        }
+    </style>
+</head>
+<body class="antialiased leading-relaxed">
+
+<div class="container mx-auto p-4 md:p-8 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg">
+
+    <!-- Header Section -->
+    <header class="text-center my-8 md:my-12">
+        <h1 class="header-title text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+            浜田高校オープンスクール参加者大募集！！
+        </h1>
+        <p class="text-lg md:text-xl text-gray-700">
+            あなたの「好き」が見つかる場所、浜田高校へようこそ！
+        </p>
+    </header>
+
+    <!-- Main Visual Section -->
+    <section class="mb-12">
+        <div class="image-slider rounded-xl shadow-lg">
+            <img class="active" src="https://placehold.co/1200x600/FF6B6B/FFFFFF?text=浜田高校の校舎" alt="浜田高校の校舎">
+            <img src="https://placehold.co/1200x600/FFD166/FFFFFF?text=活気あふれる教室" alt="活気あふれる教室">
+            <img src="https://placehold.co/1200x600/06D6A0/FFFFFF?text=プログラミング授業の様子" alt="プログラミング授業の様子">
+            <img src="https://placehold.co/1200x600/118AB2/FFFFFF?text=理科の実験風景" alt="理科の実験風景">
+        </div>
+    </section>
+
+    <!-- Attraction Section -->
+    <section class="mb-12 text-center">
+        <h2 class="section-title mb-8">オープンスクールの魅力</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105">
+                <div class="text-4xl text-yellow-500 mb-4">💡</div>
+                <h3 class="font-bold text-xl mb-2">ワクワク体験授業</h3>
+                <p class="text-gray-600">プログラミングや理科実験など、好奇心をくすぐる楽しい授業を体験できます。</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105">
+                <div class="text-4xl text-green-500 mb-4">⚽</div>
+                <h3 class="font-bold text-xl mb-2">部活動体験・見学</h3>
+                <p class="text-gray-600">先輩たちが活躍する部活動の雰囲気を肌で感じてみよう！</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105">
+                <div class="text-4xl text-blue-500 mb-4">💬</div>
+                <h3 class="font-bold text-xl mb-2">在校生とフリートーク</h3>
+                <p class="text-gray-600">リアルな高校生活について、何でも気軽に聞いてみよう。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section class="mb-12 text-center">
+        <h2 class="section-title mb-8">開催概要と参加申し込み</h2>
+        <div class="bg-white p-8 rounded-xl shadow-lg">
+            <div class="mb-6">
+                <h3 class="font-bold text-2xl text-red-500 mb-2">開催日</h3>
+                <p class="text-xl">2025年10月4日(土)</p>
+                <p class="text-lg text-gray-600">9:30 ～ 15:00</p>
+            </div>
+            <div class="mb-6">
+                <h3 class="font-bold text-2xl text-red-500 mb-2">場所</h3>
+                <p class="text-xl">浜田高校 校舎</p>
+                <p class="text-lg text-gray-600">〒000-0000 〇〇県浜田市〇〇町1-2-3</p>
+            </div>
+            <a href="#" class="inline-block py-3 px-8 text-white font-bold rounded-full button-primary text-xl">
+                今すぐ申し込む！
+            </a>
+        </div>
+    </section>
+
+    <!-- Access and Map Section -->
+    <section class="mb-12 text-center">
+        <h2 class="section-title mb-8">アクセス・地図</h2>
+        <div class="bg-white p-4 md:p-8 rounded-xl shadow-lg">
+            <!-- Google Maps Embed Code Placeholder -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13146.594191630137!2d132.06734105!3d34.89438255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x355b2e35a1a1f017%3A0xc39281a1a457c151!2z5riv5p2_5aSn5a2m5qCh!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-xl"></iframe>
+            <div class="mt-4 text-left">
+                <h3 class="font-bold text-xl mb-2">交通アクセス</h3>
+                <ul class="list-disc list-inside text-gray-600">
+                    <li>JR浜田駅より徒歩約15分</li>
+                    <li>石見交通バス「浜田高校前」下車すぐ</li>
+                    <li>お車でお越しの方は、敷地内駐車場をご利用いただけます。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Map Section -->
+    <section class="mb-12 text-center">
+        <h2 class="section-title mb-8">校内マップ</h2>
+        <div class="bg-white p-4 md:p-8 rounded-xl shadow-lg">
+            <p class="mb-4 text-gray-600">オープンスクール当日の主な会場や体験場所はこちらでご確認ください！</p>
+            <!-- Placeholder for campus map image -->
+            <img src="https://placehold.co/1200x800/29B6F6/FFFFFF?text=校内案内図" alt="浜田高校 校内案内図" class="w-full h-auto rounded-xl shadow-md">
+            <div class="mt-4 text-left">
+                <h3 class="font-bold text-xl mb-2">主な場所</h3>
+                <ul class="list-disc list-inside text-gray-600">
+                    <li>受付：正面玄関</li>
+                    <li>体験授業：本館1階 各教室</li>
+                    <li>部活動体験：グラウンド、体育館、武道館</li>
+                    <li>フリートークコーナー：体育館</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gemini API Chat Section -->
+    <section class="mb-12 text-center">
+        <h2 class="section-title mb-8">✨AI在校生に質問しよう！</h2>
+        <div class="bg-white p-4 md:p-8 rounded-xl shadow-lg flex flex-col items-center">
+            <div id="chat-messages" class="chat-container w-full max-w-2xl p-4 rounded-xl mb-4 space-y-4">
+                <div class="chat-message assistant p-4 shadow-sm">
+                    <p>浜田高校へようこそ！✨ 質問があれば何でも聞いてね。高校生活のことやオープンスクール当日のこと、なんでも答えるよ！</p>
+                </div>
+            </div>
+            <div class="flex w-full max-w-2xl space-x-2">
+                <input type="text" id="user-input" placeholder="質問を入力してください..." class="flex-1 p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800">
+                <button id="send-button" class="bg-blue-500 text-white p-2 rounded-lg font-bold hover:bg-blue-600 transition-colors duration-200">
+                    質問する ✨
+                </button>
+            </div>
+            <div id="loading-indicator" class="mt-4 text-gray-500 hidden">
+                回答を生成中...
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="text-center text-gray-500 mt-12 py-4">
+        <p>&copy; 2025 浜田高校 All Rights Reserved.</p>
+    </footer>
+
+</div>
+
+<script>
+    // Image Slider
+    const images = document.querySelectorAll('.image-slider img');
+    let currentIndex = 0;
+
+    function showNextImage() {
+        images[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add('active');
+    }
+
+    setInterval(showNextImage, 5000); // Change image every 5 seconds
+
+    // Gemini API Chat
+    const chatMessages = document.getElementById('chat-messages');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+    const loadingIndicator = document.getElementById('loading-indicator');
+
+    const apiKey = "";
+    const apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=" + apiKey;
+
+    async function sendMessage() {
+        const prompt = userInput.value.trim();
+        if (prompt === "") return;
+
+        // Display user message
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.classList.add('chat-message', 'user', 'p-4', 'shadow-sm');
+        userMessageDiv.innerHTML = `<p>${prompt}</p>`;
+        chatMessages.appendChild(userMessageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        userInput.value = '';
+        loadingIndicator.classList.remove('hidden');
+
+        const systemPrompt = "あなたは浜田高校の在校生です。中学生からのオープンスクールや高校生活に関する質問に、優しく、親しみやすい言葉で答えてください。敬語は使わず、友達のように話してください。難しい内容は避け、楽しい雰囲気を心がけてください。";
+
+        const chatHistory = [];
+        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+        const payload = {
+            contents: chatHistory,
+            systemInstruction: {
+                parts: [{ text: systemPrompt }]
+            },
+        };
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error(`API request failed with status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            const text = result?.candidates?.[0]?.content?.parts?.[0]?.text || "ごめん、うまく答えられないみたい。別の質問をしてみてくれる？";
+
+            // Display assistant message
+            const assistantMessageDiv = document.createElement('div');
+            assistantMessageDiv.classList.add('chat-message', 'assistant', 'p-4', 'shadow-sm');
+            assistantMessageDiv.innerHTML = `<p>${text}</p>`;
+            chatMessages.appendChild(assistantMessageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        } catch (error) {
+            console.error('Error fetching from Gemini API:', error);
+            const errorMessageDiv = document.createElement('div');
+            errorMessageDiv.classList.add('chat-message', 'assistant', 'p-4', 'shadow-sm');
+            errorMessageDiv.innerHTML = `<p>ごめん、今うまく話せないみたい。少し時間を置いてからもう一度試してみてね！</p>`;
+            chatMessages.appendChild(errorMessageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        } finally {
+            loadingIndicator.classList.add('hidden');
+        }
+    }
+
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+</script>
+
+</body>
+</html>
